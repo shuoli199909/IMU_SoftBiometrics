@@ -1,0 +1,38 @@
+# Parameters for the experiments.
+# author: Shuo Li
+# date: 2024/01/29
+
+OU_ISIR_Inertial_Sensor:  # OU_ISIR_Inertial_Sensor dataset.
+  name_dataset: 'OU_ISIR_Inertial_Sensor'  #  Name of the dataset.
+  url: http://www.am.sanken.osaka-u.ac.jp/BiometricDB/InertialGait.html  # Dataset description.
+  seed: 2024  # Random seed.
+  dir_dataset: 'C:/Users/hh528/OneDrive - ETH Zurich/shuoli/ethz/master_thesis/dataset/OU-IneritialGaitData'  # Directory of the dataset.
+  dir_info: 'C:/Users/hh528/OneDrive - ETH Zurich/shuoli/ethz/master_thesis/dataset/OU-IneritialGaitData/Protocols/IDGenderAgelist.csv'  #  Directory of the ID-Age-Gender list.
+  type_imu: 'manual_IMUZLeft'  # IMU data type. Can be viewed as sub-datasets. ['auto_IMUZCenter', 'manual_IMUZCenter', 'manual_IMUZLeft', 'manual_IMUZRight'].
+  condition: 'all'  #  Default walking condition. Might be modified in the experiments. [0, 1, 'all'].
+  len_segment: 300  # Length of data segments for pre-processing.
+  len_slide: 150  # Length of moving the sliding window.
+  delay_max_AEGDI: 150  # Maximum time delay for AE-GDI plots (number of frames).
+  delay_max_AutoCorrFeature: 10  # Maximum time delay for auto-correlation features (number of frames).
+  num_fold: 10  # N-fold cross validation.
+  device: 'cuda:0'  # Device for DL models.
+  method: 'Hand-crafted'  # Selected algorithm for training. 
+               # - ['Hand-crafted']: Manually designed features + ML algorithms.
+               #   References: 
+               #   [1] Khabir, K. M., Siraj, M. S., Ahmed, M., & Ahmed, M. U. (2019, May). Prediction of gender and age from inertial sensor-based gait dataset. In 2019 Joint 8th International Conference on Informatics, Electronics & Vision (ICIEV) and 2019 3rd International Conference on Imaging, Vision & Pattern Recognition (icIVPR) (pp. 371-376). IEEE.
+               #   [2] Pathan, R. K., Uddin, M. A., Nahar, N., Ara, F., Hossain, M. S., & Andersson, K. (2020, December). Gender classification from inertial sensor-based gait dataset. In International Conference on Intelligent Computing & Optimization (pp. 583-596). Cham: Springer International Publishing.
+               # - ['1D_CNN']: Segmented IMU signals + 1D-CNN models.
+               #   References:
+               #   [1] Sun, Y., Lo, F. P. W., & Lo, B. (2019, May). A deep learning approach on gender and age recognition using a single inertial sensor. In 2019 IEEE 16th international conference on wearable and implantable body sensor networks (BSN) (pp. 1-4). IEEE.
+               # - ['AE_GDI']: AE-GDI plots + 2D-CNN models.
+               #   References:
+               #   [1] Zhao, Y., & Zhou, S. (2017). Wearable device-based gait recognition using angle embedded gait dynamic images and a convolutional neural network. Sensors, 17(3), 478.
+               #   [2] Van Hamme, T., Garofalo, G., Argones Rúa, E., Preuveneers, D., & Joosen, W. (2019). A systematic comparison of age and gender prediction on imu sensor-based gait traces. Sensors, 19(13), 2945.
+               # - ['Autocorr']: Autocorrelation-based features + ML/DL algorithms.
+               #   References:
+               #   [1] Mostafa, A., Elsagheer, S. A., & Gomaa, W. (2021). BioDeep: A Deep Learning System for IMU-based Human Biometrics Recognition. In ICINCO (pp. 620-629).
+               # - ['Hydra']: Hydra-Multi-Rocket.
+               #   References:
+               #   [1] Dempster, A., Schmidt, D. F., & Webb, G. I. (2023). Hydra: Competing convolutional kernels for fast and accurate time series classification. Data Mining and Knowledge Discovery, 37(5), 1779-1805.
+  task: 'age_classification'  # ['age_regression', 'age_classification', 'gender_classification', 'human_authentication'].
+  range_age: [0, 10, 18, 36, 45, 100]  # Age-Class correspondance. Used for the classification task.
