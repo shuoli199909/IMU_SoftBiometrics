@@ -12,12 +12,12 @@ This project mainly comprises five parts:
 6. Systematically evaluating the performance of all developed algorithms in TSC problems for soft biometrics.
 7. Also evaluating the previous algorithms of IMU soft biometrics.
 ## Package Requirements
-- matlabengine==23.2
-- numpy==1.26.4
+- matlabengine==24.2
+- numpy==1.26.0
 - pandas==2.2.2
 - PyYAML==6.0.1
 - scikit_learn==1.4.1.post1
-- scipy==1.13.1
+- scipy==1.14.0
 - statsmodels==0.14.1
 - torch==2.2.1+cu118
 - tqdm==4.66.2
@@ -86,47 +86,47 @@ For Linux, execute: **python3 (...).py**
 ### Age Group Classification (Average)
 | **Method**                          | **Age Group Classification**                 |
 |:-----------------------------------:|:-----------------------------:|
-| Combined Feature \+ KNN             | 91\.93\%                     |
-| Combined Feature \+ NB              | 48\.50\%                     |
-| Combined Feature \+ SVM             | 80\.24\%                     |
-| Combined Feature \+ DT              | 49\.66\%                     |
-| Combined Feature \+ BT              | 77\.31\%                     |
-| Combined Feature \+ DA              | 57\.39\%                     |
-| InceptionTime                       | 57\.39\%                     |
-| H-InceptionTime                     | 95\.44\%                     |
-| ROCKET                              | 78\.93\%                     |
-| MiniROCKET                          | 77\.25\%                     |
-| MultiROCKET                         | 68\.66\%                     |
-| HYDRA                               | 91\.02\%                     |
+| Combined Feature \+ KNN             | 85\.97\%                     |
+| Combined Feature \+ NB              | 46\.92\%                     |
+| Combined Feature \+ SVM             | 76\.40\%                     |
+| Combined Feature \+ DT              | 46\.47\%                     |
+| Combined Feature \+ BT              | 71\.32\%                     |
+| Combined Feature \+ DA              | 55\.95\%                     |
+| InceptionTime                       | 92\.37\%                     |
+| H-InceptionTime                     | 91\.76\%                     |
+| ROCKET                              | 74\.62\%                     |
+| MiniROCKET                          | 71\.95\%                     |
+| MultiROCKET                         | 63\.87\%                     |
+| HYDRA                               | 82\.68\%                     |
 ### Gender Estimation (Average)
 | **Method**                          | **Gender Classification**                 |
 |:-----------------------------------:|:-----------------------------:|
-| Combined Feature \+ KNN             | 95\.69\%                     |
-| Combined Feature \+ NB              | 71\.04\%                     |
-| Combined Feature \+ SVM             | 81\.09\%                     |
-| Combined Feature \+ DT              | 73\.07\%                     |
-| Combined Feature \+ BT              | 86\.10\%                     |
-| Combined Feature \+ DA              | 79\.69\%                     |
-| InceptionTime                       | 98\.62\%                     |
-| H-InceptionTime                     | 98\.61\%                     |
-| ROCKET                              | 89\.86\%                     |
-| MiniROCKET                          | 89\.13\%                     |
-| MultiROCKET                         | 84\.50\%                     |
-| HYDRA                               | 96\.07\%                     |
+| Combined Feature \+ KNN             | 90\.90\%                     |
+| Combined Feature \+ NB              | 72\.52\%                     |
+| Combined Feature \+ SVM             | 75\.78\%                     |
+| Combined Feature \+ DT              | 71\.71\%                     |
+| Combined Feature \+ BT              | 85\.16\%                     |
+| Combined Feature \+ DA              | 80\.24\%                     |
+| InceptionTime                       | 97\.07\%                     |
+| H-InceptionTime                     | 96\.74\%                     |
+| ROCKET                              | 87\.25\%                     |
+| MiniROCKET                          | 86\.45\%                     |
+| MultiROCKET                         | 82\.86\%                     |
+| HYDRA                               | 93\.15\%                     |
 ### Age Value Regression (Average)
 | **Method**                          | **Age Value Regression (MAE)**        |
 |:-----------------------------------:|:-------------------------:|
-| Combined Feature \+ GPR             | 5.63                     |
-| Combined Feature \+ LR              | 17.08                     |
-| Combined Feature \+ SVM             | 7.22                     |
-| Combined Feature \+ DT              | 11.37                     |
-| Combined Feature \+ BT              | 9.23                     |
-| InceptionTime                       | 3.54                     |
-| H-InceptionTime                     | 3.40                     |
-| ROCKET                              | 8.60                     |
-| MiniROCKET                          | 8.08                     |
-| MultiROCKET                         | 9.16                     |
-| HYDRA                               | 6.11                     |
+| Combined Feature \+ GPR             | 6.23                     |
+| Combined Feature \+ LR              | 16.80                     |
+| Combined Feature \+ SVM             | 7.46                     |
+| Combined Feature \+ DT              | 11.70                     |
+| Combined Feature \+ BT              | 9.34                     |
+| InceptionTime                       | 3.95                     |
+| H-InceptionTime                     | 3.94                     |
+| ROCKET                              | 8.86                     |
+| MiniROCKET                          | 8.36                     |
+| MultiROCKET                         | 9.20                     |
+| HYDRA                               | 6.85                     |
 ### Contact
 If you have any questions, please feel free to contact me through email (shuoli199909@outlook.com)!
 ## License - MIT License.

@@ -60,16 +60,16 @@ def main_IMU2AEGDI(Params):
         AEGDI = pd.concat((pd.Series({'ID': ID, 'condition': condition, 'num_seq': num_seq, 'age': age, 'gender': gender}), 
                            AEGDI))
         df_AEGDI = pd.concat((df_AEGDI, AEGDI.to_frame().T), ignore_index=True)
-        # Save extracted features.
-        dir_save = os.path.join(dir_crt, 'data', Params.name_dataset, Params.type_imu, 'AE_GDI', 'AEGDI_con_'+str(Params.condition)+'.h5')
-        df_AEGDI.to_hdf(dir_save, key='df')
+    # Save extracted features.
+    dir_save = os.path.join(dir_crt, 'data', Params.name_dataset, Params.type_imu, 'AE_GDI', 'AEGDI_con_'+str(Params.condition)+'.h5')
+    df_AEGDI.to_hdf(dir_save, key='df')
 
 
 if __name__ == "__main__":
     dir_option = os.path.join(dir_crt, 'config', 'options.yaml')  # Load pre-defiend options.
     name_dataset = 'OU_ISIR_Inertial_Sensor'  # ['OU_ISIR_Inertial_Sensor', 'OU_ISIR_Similar_Action'].
     Params = util_data.Params(dir_option, name_dataset)  # Initialize parameter object.
-    list_type_imu = ['auto_IMUZCenter', 'manual_IMUZCenter', 'manual_IMUZLeft', 'manual_IMUZRight']
+    list_type_imu = ['manual_IMUZLeft', 'manual_IMUZCenter', 'manual_IMUZRight']
     list_condition = [0, 1]
     for type_imu in list_type_imu:
         Params.type_imu = type_imu

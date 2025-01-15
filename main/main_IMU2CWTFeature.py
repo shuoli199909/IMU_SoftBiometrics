@@ -6,7 +6,6 @@ import sys
 import tqdm
 import numpy as np
 import pandas as pd
-from scipy import signal
 dir_crt = os.getcwd()
 sys.path.append(os.path.join(dir_crt, 'util'))
 import util_data
@@ -50,7 +49,7 @@ def main_IMU2CWTFeature(Params):
         data_acc_x = df_data[['acc_x_'+str(i_f) for i_f in range(0, Params.len_segment)]].values  # Accelerometer x-axis.
         data_acc_y = df_data[['acc_y_'+str(i_f) for i_f in range(0, Params.len_segment)]].values  # Accelerometer y-axis.
         data_acc_z = df_data[['acc_z_'+str(i_f) for i_f in range(0, Params.len_segment)]].values  # Accelerometer z-axis.
-        data_imu = np.row_stack((data_gyro_x, data_gyro_y, data_gyro_z, data_acc_x, data_acc_y, data_acc_z))  # IMU data.
+        data_imu = np.vstack((data_gyro_x, data_gyro_y, data_gyro_z, data_acc_x, data_acc_y, data_acc_z))  # IMU data.
         # Extract CWT features.
         data_cwt = util_data.IMU2CWT(data_imu)
         if i_seg == 0:
@@ -66,7 +65,7 @@ if __name__ == "__main__":
     dir_option = os.path.join(dir_crt, 'config', 'options.yaml')  # Load pre-defiend options.
     name_dataset = 'OU_ISIR_Inertial_Sensor'  # ['OU_ISIR_Inertial_Sensor', 'OU_ISIR_Similar_Action'].
     Params = util_data.Params(dir_option, name_dataset)  # Initialize parameter object.
-    list_type_imu = ['manual_IMUZRight', 'manual_IMUZCenter']
+    list_type_imu = ['manual_IMUZLeft', 'manual_IMUZCenter', 'manual_IMUZRight']
     list_condition = [0, 1]
     for type_imu in list_type_imu:
         Params.type_imu = type_imu

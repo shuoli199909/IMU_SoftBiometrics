@@ -12,7 +12,6 @@ import pandas as pd
 from tqdm import tqdm
 from tsai.models import InceptionTime
 from sklearn.linear_model import RidgeCV, RidgeClassifierCV
-import matplotlib.pyplot as plt
 dir_crt = os.getcwd()
 sys.path.append(os.path.join(dir_crt, 'util'))
 import util_data
@@ -62,9 +61,9 @@ def main_Benchmark_developed(Params):
     if (Params.method == 'Combined'):  # Hand-crafted feature + Autocorrelation feature + ML models.
         # Set ML models.
         if (Params.task == 'age_classification') or (Params.task == 'gender_classification'):
-            list_name_model = ['KM', 'DT', 'DA', 'NB', 'SVM', 'KNN', 'Ensemble']
+            list_name_model = ['KNN', 'NB', 'SVM', 'DT', 'BT', 'DA']
         elif Params.task == 'age_regression':
-            list_name_model = ['LR', 'DT', 'SVM', 'Ensemble', 'GPR', 'KM']
+            list_name_model = ['GPR', 'LR', 'SVM', 'DT', 'BT']
         else:
             sys.exit()
         # Loop over all ML models.
@@ -135,13 +134,11 @@ def main_Benchmark_developed(Params):
                         model = eng.fitrtree(X_train, Y_train_target, 'MinLeafSize', 4)
                     elif name_model == 'SVM':
                         model = eng.fitrsvm(X_train, Y_train_target, 'KernelFunction', 'gaussian', 'KernelScale', 'auto', 'Standardize', 1)
-                    elif name_model == 'Ensemble':
+                    elif name_model == 'BT':
                         model = eng.fitrensemble(X_train, Y_train_target, 'Method', 'Bag', 'Learners', 'tree')
                     elif name_model == 'GPR':
                         model = eng.fitrgp(X_train, Y_train_target, 'KernelFunction', 'rationalquadratic', 
                                            'BasisFunction', 'constant', 'Standardize', 1, 'ConstantSigma', False)
-                    else:
-                        model = eng.fitrkernel(X_train, Y_train_target, 'Learner', 'leastsquares', 'KernelScale', 'auto', 'Standardize', 1)
                     
                 elif (Params.task == 'age_classification') or (Params.task == 'gender_classification'):  # Classification tasks.
                     # Collect data for training and testing.
@@ -167,11 +164,8 @@ def main_Benchmark_developed(Params):
                         model = eng.fitcecoc(X_train, Y_train_target, 'Learners', t, 'FitPosterior', True)
                     elif name_model == 'KNN':
                         model = eng.fitcknn(X_train, Y_train_target, 'NumNeighbors', 1, 'Distance', 'euclidean', 'Standardize', 1)
-                    elif name_model == 'Ensemble':
+                    elif name_model == 'BT':
                         model = eng.fitcensemble(X_train, Y_train_target, 'Method', 'Bag', 'Learners', 'tree')
-                    else:
-                        t = eng.templateKernel('Learner', 'svm', 'KernelScale', 'auto', 'Standardize', 1)
-                        model = eng.fitcecoc(X_train, Y_train_target, 'Learners', t)
                 else:
                     sys.exit()
                 # Model evaluation.
@@ -1322,7 +1316,7 @@ if __name__ == "__main__":
     Params = util_data.Params(dir_option, name_dataset)   # Initialize parameter object.
     list_method = ['Combined', 'InceptionTime', 'H-InceptionTime', 'ROCKET', 'MiniROCKET', 'MultiROCKET', 'HYDRA']
     list_type_imu = ['manual_IMUZCenter', 'manual_IMUZLeft', 'manual_IMUZRight']
-    list_task = ['age_regression', 'age_classification', 'gender_classification']
+    list_task = ['age_classification', 'gender_classification', 'age_regression']
     for type_imu in list_type_imu:
         Params.type_imu = type_imu
         for task in list_task:

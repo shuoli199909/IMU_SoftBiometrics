@@ -10,8 +10,6 @@ import matlab.engine
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from sklearn.linear_model import RidgeCV, RidgeClassifierCV
-import matplotlib.pyplot as plt
 dir_crt = os.getcwd()
 sys.path.append(os.path.join(dir_crt, 'util'))
 import util_data
@@ -65,7 +63,6 @@ def main_Benchmark_previous(Params):
                 list_name_model = ['DT']
         # Loop over all ML models.
         for name_model in list_name_model:
-            print(name_model)
             # Collect IMU feature data.
             list_condition = [0, 1]
             df_feature = pd.DataFrame([])
@@ -1045,7 +1042,7 @@ if __name__ == "__main__":
     Params = util_data.Params(dir_option, name_dataset)   # Initialize parameter object.
     list_method = ['Khabir', 'Pathan', 'Sun', 'Ahad', 'Mostafa', 'Davarci']
     list_type_imu = ['manual_IMUZLeft', 'manual_IMUZCenter', 'manual_IMUZRight']
-    list_task = ['age_regression', 'age_classification', 'gender_classification']
+    list_task = ['age_classification', 'gender_classification', 'age_regression']
     for type_imu in list_type_imu:
         Params.type_imu = type_imu
         for task in list_task:

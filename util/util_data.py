@@ -13,7 +13,6 @@ import pandas as pd
 from scipy import stats, signal
 from statsmodels import robust
 from statsmodels.tsa.stattools import acf
-import matplotlib.pyplot as plt
 
 
 class Params():
@@ -449,6 +448,7 @@ def split_balance(list_idx, list_age, list_gender, range_age, num_fold, seed):
     num_fold = np.array(num_fold)  # Number of folds.
     # Create index-age-gender dataframe.
     df_info = pd.DataFrame({'index': list_idx, 'age': list_age, 'gender': list_gender})
+    df_info = df_info.sample(frac=1).reset_index(drop=True)
     # Initialize the balanced subject index list.
     list_idx_balance = [[] for _ in range(0, num_fold)]
     # Fill the list.
